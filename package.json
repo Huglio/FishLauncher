@@ -1,0 +1,30 @@
+{
+    "name": "DesktopFish",
+    "version": "1.0.0",
+    "description": "Desktop Aquarium",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron .",
+        "build": "electron-builder"
+    },
+    "dependencies": {
+        "axios": "^1.7.7",
+        "electron-as-wallpaper": "^1.0.8",
+        "express": "^4.21.1",
+        "localtunnel": "^2.0.2",
+        "ngrok": "^5.0.0-beta.2",
+        "systeminformation": "^5.23.5",
+        "uuid": "^10.0.0"
+    },
+    "build": {
+        "win": {
+            "target": "nsis",
+            "icon": "Icon.ico",
+            "requestedExecutionLevel": "requireAdministrator"
+        }
+    },
+    "devDependencies": {
+        "electron": "^33.0.2",
+        "electron-builder": "^25.1.8"
+    }
+}

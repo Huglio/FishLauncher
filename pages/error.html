@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erro no App</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1e1e1e; /* Fundo escuro */
+            color: #f0f0f0; /* Cor clara para o texto */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            color: #d9534f; /* Vermelho para indicar erro */
+            margin-bottom: 10px;
+        }
+
+        #error {
+            font-size: 1.5rem;
+            color: #f0ad4e; /* Laranja suave */
+            margin-top: 10px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin: 15px 0;
+            line-height: 1.6;
+            max-width: 600px;
+        }
+
+        a {
+            color: #5bc0de; /* Azul claro */
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            border: 1px solid #5bc0de;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #5bc0de; /* Azul mais intenso */
+            color: #1e1e1e; /* Texto escuro ao passar o mouse */
+        }
+
+        .container {
+            padding: 30px;
+            border-radius: 8px;
+            background-color: #2e2e2e; /* Fundo de contraste */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Sombra elegante */
+            max-width: 700px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ocorreu um erro</h1>
+        <h1 id="error">Erro desconhecido</h1>
+        <p>Desculpe pelo inconveniente! Tente novamente mais tarde.</p>
+        <p>Se o erro persistir, entre em contato pelo meu Instagram para que eu possa ajudar: 
+            <a href="https://instagram.com/eusolyy" target="_blank">@eusolyy</a>
+        </p>
+    </div>
+    <script>
+        const { ipcRenderer } = require('electron');
+
+        // Atualiza o texto embaixo de "Ocorreu um erro"
+        ipcRenderer.on('update-error', (event, newText) => {
+            document.getElementById('error').textContent = newText;
+        });
+    </script>
+</body>
+</html>

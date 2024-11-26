@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carregando</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #121212; /* Cor escura sofisticada */
+      color: #e0e0e0; /* Texto claro */
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 4rem;
+      margin: 0;
+      letter-spacing: 1.5px;
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.5);
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin: 20px 0 0;
+      font-weight: 300;
+      letter-spacing: 1px;
+      color: #b0b0b0;
+      opacity: 0.7;
+    }
+
+    /* Sombra e bordas suaves para a página */
+    body {
+      background: linear-gradient(45deg, #121212, #1a1a1a);
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 1.0);
+    }
+
+  </style>
+</head>
+<body>
+  <h1 id="loading-text">Carregando</h1>
+  <p id="sub-text">Inicializando...</p>
+
+  <script>
+    const { ipcRenderer } = require('electron');
+
+    // Atualiza o texto embaixo de "Carregando"
+    ipcRenderer.on('update-current-task', (event, newText) => {
+      document.getElementById('sub-text').textContent = newText;
+    });
+
+    let dots = 0;
+    const loadingText = document.getElementById('loading-text');
+
+    setInterval(() => {
+      dots = (dots + 1) % 4; // Alterna entre 0, 1, 2 e 3
+      loadingText.textContent = 'Carregando' + '.'.repeat(dots);
+    }, 500); // Atualiza a cada 500ms
+  </script>
+</body>
+</html>
